@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/javascripts/sea-modules/gallery/bootstrap/3.0.0/bootstrap.css" />
+    <link rel="stylesheet" href="/stylesheets/editor/css/ueditor.css" type="text/css" media="all"/>
+    <!--[if lt IE 9]>
+    <script src="../../assets/js/html5shiv.js"></script>
+    <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        h3 {padding: 0; margin: 0;}
+        .open > a{opacity: 0.5;}
+        #wrap {
+            min-height: 100%;
+            height: auto !important;
+            height: 100%;
+            margin: 0 auto -100px;
+            padding: 50px 0 100px;
+        }
+        #footer {
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body style="position: relative;">
+<div id="nav_top" class="navbar navbar-inverse navbar-fixed-top" style="border-bottom: 1px solid rgba(255,255,255,0.5);">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">WSW</a>
+        </div>
+        <div class="navbar-collapse collapse" >
+            <ul class="nav navbar-nav">
+                <li><a href="/list/<%if(user){%><%=user.name%><%}%>">博客</a></li>
+            </ul>
+            <% if (!user) {%>
+            <form class="navbar-form navbar-right" id="login_panel" >
+                <div class="form-group">
+                    <input type="text" placeholder="870224929@qq.com" class="form-control" id="login_email" value="870224929@qq.com">
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" class="form-control" id="login_psw">
+                </div>
+                <button type="button" class="btn btn-success" id="login_btn">登录</button>
+            </form>
+            <% } %>
+            <ul class="nav navbar-nav navbar-right" id="username" style="display: none;">
+                <li class="dropdown">
+                    <a href="#" class="name dropdown-toggle" data-toggle="dropdown"><span><% if(user){%><%= user.name%><%}%><span></span><b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/post" id="post">发表文章</a></li>
+                        <li><a href="#" id="private">个人中心</a></li>
+                        <li><a href="#" id="logout">退出</a></li>
+                        <li><a href="#" >其他</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!--/.navbar-collapse -->
+    </div>
+</div>

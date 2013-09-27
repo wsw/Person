@@ -1,0 +1,29 @@
+<%- include header %>
+ <div id="wrap">
+      <div class="container">
+          <div class="row" style="height: 50px;">
+
+          </div>
+          <div class="col-md-8">
+              <div class="page-header">
+                  <h3><%= post.title%></h3>
+                  <div class="row col-md-12" style="height: 30px; line-height: 30px;margin-top: 5px;">
+                      <span><%= post.time.day%></span>
+                      <span style="margin-left: 20px;;"><%= post.comments.length%>人评论</span>
+                      <span style="margin-left: 20px;;"><%= post.pv%>人浏览</span>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-8">
+                <p><%- post.post%></p>
+          </div>
+      </div>
+ </div>
+<%- include footer %>
+</body>
+<script type="text/javascript" src="/javascripts/sea-modules/seajs/seajs/2.1.1/sea.js"></script>
+<script type="text/javascript" src="/javascripts/sea-modules/config.js"></script>
+<script>
+    seajs.use(['header','bootstrap'], function() { });
+</script>
+</html>

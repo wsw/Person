@@ -1,0 +1,31 @@
+<%- include header %>
+      <div id="carousel" style="display: none;">
+          <img  src="images/pic1.jpg" class="pic_bg img-responsive" style="position: absolute; left: 0; top: 0;"/>
+          <img  src="images/pic2.jpg" class="pic_bg img-responsive" style="position: absolute; left: 0; top: 0;"/>
+          <img  src="images/pic3.jpg" class="pic_bg img-responsive" style="position: absolute; left: 0; top: 0;"/>
+      </div>
+      <div id="wrap">
+          <div class="container">
+              <div class="row" style="height: 100px;"></div>
+              <div class="col-md-3 col-md-offset-8">
+                  <form class="form-signin">
+                      <h3 class="form-signin-heading" id="tip">新用户注册</h3>
+                      <input type="text" class="form-control" placeholder="Email address" autofocus="" id="email">
+                      <input type="password" class="form-control" placeholder="Password" style="margin-top: 5px;" id="psw">
+                      <input type="password" class="form-control" placeholder="Password Again" style="margin-top: 5px;" id="repsw">
+                      <!--<label class="checkbox">-->
+                          <!--<input type="checkbox" value="remember-me"> Remember me-->
+                      <!--</label>-->
+                      <button class="btn btn-lg btn-primary btn-block" type="button" style="margin-top: 5px;" id="register">注册</button>
+                  </form>
+              </div>
+          </div>
+      </div>
+<%- include footer %>
+  </body>
+  <script type="text/javascript" src="javascripts/sea-modules/seajs/seajs/2.1.1/sea.js"></script>
+  <script type="text/javascript" src="javascripts/sea-modules/config.js"></script>
+  <script>
+      seajs.use(['index','header','bootstrap'], function() { });
+  </script>
+</html>

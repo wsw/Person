@@ -1,0 +1,89 @@
+<%- include header %>
+<div id="wrap">
+    <div class="container">
+          <div class="row" style="height: 50px;">
+
+          </div>
+          <div class="col-md-8">
+              <ul class="list-group" id="acticle_list">
+                  <% for(var i = 0; i < posts.length; i++) { %>
+                  <li class="list-group-item" style="border-left: none ; border-right: none;">
+                      <div class="row">
+                          <div class="col-md-3">
+                              <img src="/<%=posts[i].img%>" class="img-responsive" style="width: 100%; height: 120px;"/>
+                          </div>
+                          <div class="col-md-9">
+                                <h3 style=""><a href="/u/<%= posts[i].name%>/<%= posts[i].time.day%>/<%= posts[i].title%>"><%= posts[i].title%></a></h3>
+                                <div class="row col-md-12" style="height: 50px; line-height: 50px;">
+                                    <span><%= posts[i].time.day%></span>
+                                    <span style="margin-left: 15px;"><%= posts[i].comments.length%>人评论</span>
+                                    <span style="margin-left: 15px;"><%= posts[i].pv%>人浏览</span>
+                                </div>
+                                <p><%= posts[i].head%></p>
+                          </div>
+                      </div>
+                  </li>
+                  <% } %>
+              </ul>
+              <ul id="page">
+                  <!--<ul class="pagination" ></ul>-->
+              </ul>
+              <span style="font-family:'sans serif, tahoma, verdana, helvetica';"><span style="white-space:normal;"> </span></span>
+          </div>
+          <div class="col-md-4">
+              <div class="row">
+                  <form>
+                      <div class="form-group col-md-8">
+                          <input type="text" placeholder="搜搜" class="form-control" id="search">
+                      </div>
+                      <button type="button" class="btn btn-success" id="search_btn">搜索</button>
+                  </form>
+              </div>
+              <div class="panel panel-default">
+                  <div class="panel-heading">
+                      <h3 class="panel-title">热门标签</h3>
+                  </div>
+                  <div class="panel-body">
+                      Basic panel example
+                  </div>
+              </div>
+          </div>
+    </div>
+</div>
+<%- include footer %>
+</body>
+<script type="text/javascript" src="/javascripts/sea-modules/seajs/seajs/2.1.1/sea.js"></script>
+<script type="text/javascript" src="/javascripts/sea-modules/config.js"></script>
+<script>
+    seajs.use(['$','list','bootstrap-paginator','header','bootstrap','auto'], function($, List) {
+           var ulList = $("#acticle_list");
+           var options = {
+               currentPage: 1,
+               totalPages:"<%= totalPages%>",
+               numberOfPages:5,
+               bootstrapMajorVersion: 3,
+               onPageChanged: function(e, old, newpage) {
+                     getData(newpage, function(tplhtml){
+                         ulList.html(tplhtml);
+                     });
+               }
+           }
+           $('#page').bootstrapPaginator(options);
+           function getData(newpage, callback) {
+               $.ajax({
+                   url: '/getpage',
+                   data: {page: newpage, name: "<%= posts[0].name%>"},
+                   dataType: 'json',
+                   type: 'get',
+                   success: function(data) {
+                        if (data) {
+                            console.log(data.posts);
+                            var tplhtml = List.render({posts:data.posts});
+                            callback(tplhtml);
+                        }
+                   }
+               })
+           }
+    });
+</script>
+</html>
